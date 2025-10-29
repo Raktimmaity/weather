@@ -1,16 +1,107 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Weather App
 
-Currently, two official plugins are available:
+**Weather Now** is a fast and visually appealing weather app designed for users like **Jamie**, an outdoor enthusiast who wants to check the weather instantly before heading out.  
+It uses **Open-Meteo’s free API** to fetch live temperature, condition, wind speed, and dynamically updates the UI with matching weather icons and background gradients.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Search current weather by city name  
+- Detects your location automatically (with    permission)  
+- Live updating clock (seconds update dynamically)  
+- Shows temperature and “feels like” data  
+- Weather icons and conditions (Clear Sky, Rainy, Snowy, etc.)  
+- Smooth gradient backgrounds based on weather type  
+- Handles city not found and network errors gracefully  
+- Fully responsive, mobile-friendly UI  
+- Built with **React + TailwindCSS + Axios**
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Screenshots
+
+![App Screenshot](https://github.com/Raktimmaity/weather/blob/main/public/screenshot.png?raw=true)
+
+
+## API Reference
+
+### Open-Meteo Weather API
+
+Fetches current weather data using latitude and longitude.
+
+```http
+GET https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true
+```
+
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `latitude` | `number` | **Required**. Latitude of the city |
+| `longitude` | `number` | **Required**. Longitude of the city |
+| `current_weather` | `boolean` | Set to true to ```get``` current weather data |
+
+### Open-Meteo Geocoding API
+
+Used to convert city names into geographic coordinates.
+
+```http
+  GET https://geocoding-api.open-meteo.com/v1/search?name={city}
+
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required**. City name to search |
+
+### BigDataCloud Reverse Geocoding API
+
+Used to get a readable city name from geographic coordinates.
+
+```
+GET https://api.bigdatacloud.net/data/reverse-geocode-client?latitude={lat}&longitude={lon}&localityLanguage=en
+
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `latitude` | `number` | **Required**. Latitude of the city |
+| `longitude` | `number` | **Required**. Longitude of the city |
+| `localityLanguage` | `string` | Set to ```en``` for English results |
+
+
+## Installation
+
+Clone the repository
+```bash
+  git clone https://github.com/yourusername/weather-now.git
+```
+Navigate to the project directory
+```
+cd weather-now
+```
+Install dependencies
+```
+npm install
+
+```
+Run locally
+```
+npm run dev
+
+```
+Open your browser at
+```
+http://localhost:5173
+```
+## Acknowledgements
+
+ - [Open-Meteo API](https://open-meteo.com/) — for accurate, free weather data
+ - [BigDataCloud](https://www.bigdatacloud.com/) — for geolocation and reverse geocoding
+ - [Tailwind CSS](https://tailwindcss.com/) — for fast, responsive UI design
+ - [Lucide Icons](https://lucide.dev/) — for clean SVG icons
+
+
+## Tech Stack
+- **FrontEnd**: React, Tailwind CSS
+- **Data Fetching**: Axios
+- **API Source**: Open-Meteo, BigDataCloud
