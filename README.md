@@ -29,7 +29,7 @@ It uses **Open-Meteo’s free API** to fetch live temperature, condition, wind s
 
 Fetches current weather data using latitude and longitude.
 
-```http
+```
 GET https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true
 ```
 
@@ -46,7 +46,6 @@ Used to convert city names into geographic coordinates.
 
 ```http
   GET https://geocoding-api.open-meteo.com/v1/search?name={city}
-
 ```
 
 | Parameter | Type     | Description                       |
